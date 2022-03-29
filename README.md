@@ -1,6 +1,3 @@
-# djangoAuth
-Django advanced authentication system implementation
-
 <p align="center">
     
 
