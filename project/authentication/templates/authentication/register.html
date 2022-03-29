@@ -1,0 +1,23 @@
+<h1>Register </h1>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        {{ field }} <br><br>
+    {% endfor %}
+
+    {% if form.email.errors %}
+        <p style='color: red;'>{{form.email.errors}}</p><br>
+    {% endif %}
+    {% if form.username.errors %}
+        <p style='color: red;'>{{form.username.errors}}</p><br>
+    {% endif %}
+    {% if form.password1.errors %}
+        <p style='color: red;'>{{form.password1.errors}}</p><br>
+    {% endif %}
+    {% if form.password2.errors %}
+        <p style='color: red;'>{{form.password2.errors}}</p><br>
+    {% endif %}
+    <button type="submit">submit</button>
+</form>
+
+<a href="{%url 'login'%}">Go to login</a><br>

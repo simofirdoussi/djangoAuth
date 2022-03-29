@@ -1,0 +1,71 @@
+<style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+    .google-btn{
+        max-width : 284px;
+        height: 42px;
+        background-color: #4285f4;
+        border-radius: 2px;
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+    }
+    .google-icon-wrapper{
+        position: absolute;
+        margin-top: 1px;
+        margin-left: 1px;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background-color:  #fff;
+    }
+    .google-icon{
+        position: absolute;
+        margin-top: 10px;
+        margin-left: 10px;
+        width: 18px;
+        height: 18px;
+    }
+    .btn-text{
+        float: right;
+        margin: 13px 53px 0 0;
+        color: #fff;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        font-family: "Roboto";
+    }
+    .btn-text:hover {
+    box-shadow: 0 0 6px #4285f4;
+    }
+    .btn-text:active {
+    background: 1669F2;
+}
+
+</style>
+<h1>Login Page</h1>
+{% load socialaccount %}
+<a href="{% provider_login_url 'google' method='oauth2' %}">
+    <div class="google-btn" >
+        <div class="google-icon-wrapper">
+            <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+        </div>
+        <p class="btn-text"><b>Continue With Google</b></p>
+    </div><br>
+</a>
+
+<form action="{% url 'login' %}" method="post">
+
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        {{ field }}
+    {% endfor %}  
+
+    {% if form.non_field_errors %}
+        <p style='color: red;'>Please enter a valid username and password. Note that your account may be inactive.</p>
+    {% endif %}
+    
+    <input class="btn--primary" type="submit" value="Submit"/>
+
+</form>
+<a href="{%url 'password_reset'%}">Forgot password</a><br>
+<a href="{%url 'register'%}">Go to signup</a><br>
+
+
